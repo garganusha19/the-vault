@@ -13,7 +13,8 @@ public class CipherPuzzleTest {
                 1,
                 "Decode KHOOR",
                 "HELLO",
-                Difficulty.MEDIUM
+                Difficulty.MEDIUM,
+                3
         );
 
         assertEquals(1, puzzle.getId());
@@ -22,4 +23,22 @@ public class CipherPuzzleTest {
         assertEquals(Difficulty.MEDIUM, puzzle.getDifficulty());
         assertTrue(puzzle.isLocked());
     }
+
+    @Test
+void shouldDecodeCaesarCipher() {
+
+    CipherPuzzle puzzle = new CipherPuzzle(
+            1,
+            "KHOOR",
+            "HELLO",
+            Difficulty.MEDIUM,
+            3
+    );
+
+    String decoded = puzzle.decode("KHOOR");
+
+    assertEquals("HELLO", decoded);
+    assertEquals("XYZ", puzzle.decode("ABC"));
+    assertEquals(3, puzzle.getShift());
+}
 }
